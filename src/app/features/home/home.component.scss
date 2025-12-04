@@ -1,0 +1,49 @@
+.hero-section {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #1a237e 0%, #000000 100%);
+    color: white;
+    padding: 20px 16px; // Match header horizontal padding
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    button {
+        margin: 0 8px;
+    }
+}
+
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 16px; // Match header horizontal padding
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+
+    mat-icon {
+        color: #00e5ff;
+    }
+}
