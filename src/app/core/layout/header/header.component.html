@@ -7,7 +7,7 @@
     <span class="spacer"></span>
     <button mat-button routerLink="/">Home</button>
 
-    @if (authService.isLoggedIn) {
+    @if (authService.isLoggedIn()) {
     <button mat-button routerLink="/fda-enforcement">FDA Reports</button>
     }
 
@@ -16,8 +16,10 @@
       <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
 
+    @if (authService.isLoggedIn()) {
     @if (authService.userName()) {
     <span class="user-name">Hi, {{ authService.userName() }}</span>
+    }
     <button mat-button (click)="logout()">Logout</button>
     } @else {
     <button mat-button (click)="login()">Login</button>

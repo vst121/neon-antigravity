@@ -4,7 +4,7 @@
         <span matListItemTitle>Home</span>
     </a>
 
-    @if (authService.isLoggedIn) {
+    @if (authService.isLoggedIn()) {
     <a mat-list-item routerLink="/fda-enforcement">
         <mat-icon matListItemIcon>warning</mat-icon>
         <span matListItemTitle>FDA Reports</span>

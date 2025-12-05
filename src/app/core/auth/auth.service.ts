@@ -7,6 +7,7 @@ import { authConfig } from './auth.config';
 })
 export class AuthService {
     userName = signal<string | null>(null);
+    isLoggedIn = signal<boolean>(false);
 
     constructor(private oauthService: OAuthService) {
         this.configure();
@@ -14,11 +15,28 @@ export class AuthService {
 
     private configure() {
         this.oauthService.configure(authConfig);
+        this.oauthService.setupAutomaticSilentRefresh();
+
         this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-            if (this.oauthService.hasValidAccessToken()) {
-                this.loadUserProfile();
-            }
+            this.updateState();
         });
+
+        // Listen to events to update state
+        this.oauthService.events.subscribe(e => {
+            console.log('OAuth Event:', e.type);
+            this.updateState();
+        });
+    }
+
+    private updateState() {
+        const hasToken = this.oauthService.hasValidAccessToken();
+        this.isLoggedIn.set(hasToken);
+
+        if (hasToken) {
+            this.loadUserProfile();
+        } else {
+            this.userName.set(null);
+        }
     }
 
     login() {
@@ -27,11 +45,7 @@ export class AuthService {
 
     logout() {
         this.oauthService.logOut();
-        this.userName.set(null);
-    }
-
-    get isLoggedIn(): boolean {
-        return this.oauthService.hasValidAccessToken();
+        this.updateState();
     }
 
     private loadUserProfile() {
