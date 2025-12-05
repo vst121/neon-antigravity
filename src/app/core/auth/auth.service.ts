@@ -10,6 +10,7 @@ export class AuthService {
     isLoggedIn = signal<boolean>(false);
 
     constructor(private oauthService: OAuthService) {
+        console.log('AuthService initialized');
         this.configure();
     }
 

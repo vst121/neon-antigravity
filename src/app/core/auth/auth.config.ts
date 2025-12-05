@@ -7,6 +7,9 @@ export const authConfig: AuthConfig = {
     // URL of the SPA to redirect the user to after login
     redirectUri: window.location.origin + '/index.html',
 
+    // URL of the SPA to redirect the user to after logout
+    postLogoutRedirectUri: window.location.origin,
+
     // The SPA's id. The SPA is registerd with this id at the auth-server
     clientId: 'interactive.public',
 
