@@ -1,0 +1,31 @@
+<div class="fda-container">
+    <div class="header">
+        <h1>FDA Enforcement Reports</h1>
+        <p>Latest food enforcement reports from the FDA API.</p>
+    </div>
+
+    <div class="loading-shade" *ngIf="!(reports$ | async)">
+        <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <div class="reports-grid" *ngIf="reports$ | async as reports">
+        <mat-card class="report-card" *ngFor="let report of reports">
+            <mat-card-header>
+                <mat-icon mat-card-avatar color="warn">warning</mat-icon>
+                <mat-card-title>{{ report.recalling_firm }}</mat-card-title>
+                <mat-card-subtitle>{{ report.city }}, {{ report.state }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="reason"><strong>Reason:</strong> {{ report.reason_for_recall }}</p>
+                <p class="product"><strong>Product:</strong> {{ report.product_description }}</p>
+                <div class="details">
+                    <span><strong>Date:</strong> {{ report.report_date | date }}</span>
+                    <span><strong>Status:</strong> {{ report.status }}</span>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button color="primary">DETAILS</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
