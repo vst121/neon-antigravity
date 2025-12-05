@@ -2,10 +2,8 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
+
 
     .container {
         display: flex;
@@ -36,7 +34,6 @@
         margin-left: 1rem;
         margin-right: 0.5rem;
         font-size: 0.9rem;
-        color: #ccc;
         display: none; // Hide on small screens if needed, or adjust
 
         @media (min-width: 600px) {
