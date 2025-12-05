@@ -2,8 +2,11 @@
     height: 100vh;
 }
 
-.content {
-    min-height: calc(100vh - 64px - 64px); // Adjust based on header/footer height
+.main-content {
+    min-height: calc(100vh - 64px); // Adjust based on header height
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
