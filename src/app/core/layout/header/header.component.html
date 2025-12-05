@@ -6,11 +6,23 @@
     <span>Neon Antigravity</span>
     <span class="spacer"></span>
     <button mat-button routerLink="/">Home</button>
+
+    @if (authService.isLoggedIn) {
     <button mat-button routerLink="/fda-enforcement">FDA Reports</button>
+    }
+
     <button mat-button routerLink="/about">About</button>
     <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle Theme">
       <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
+
+    @if (authService.userName()) {
+    <span class="user-name">Hi, {{ authService.userName() }}</span>
+    <button mat-button (click)="logout()">Logout</button>
+    } @else {
+    <button mat-button (click)="login()">Login</button>
+    }
+
     <button mat-icon-button aria-label="User">
       <mat-icon>account_circle</mat-icon>
     </button>

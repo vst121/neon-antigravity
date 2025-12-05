@@ -2,35 +2,45 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-}
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-}
-
-.spacer {
-    flex: 1 1 auto;
-}
-
-.menu-button {
-    margin-right: 8px;
-
-    @media (min-width: 600px) {
-        display: none;
+    .container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
     }
-}
 
-button[mat-button] {
-    display: none;
+    .spacer {
+        flex: 1 1 auto;
+    }
 
-    @media (min-width: 600px) {
-        display: inline-block;
+    .menu-button {
+        margin-right: 1rem;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    button {
+        margin-left: 0.5rem;
+    }
+
+    .user-name {
+        margin-left: 1rem;
+        margin-right: 0.5rem;
+        font-size: 0.9rem;
+        color: #ccc;
+        display: none; // Hide on small screens if needed, or adjust
+
+        @media (min-width: 600px) {
+            display: inline;
+        }
     }
 }

@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { RouterLink } from '@angular/router';
 
+import { AuthService } from '../../auth/auth.service';
+
 @Component({
   selector: 'app-sidenav',
   standalone: true,
@@ -13,5 +15,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent {
-
+  constructor(public authService: AuthService) { }
 }
