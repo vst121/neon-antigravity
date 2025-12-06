@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FdaEnforcementService, FdaEnforcementResult } from '../../core/services/fda-enforcement.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { loadReports } from './store/fda.actions';
+import { selectReports, selectLoading, selectError } from './store/fda.selectors';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,12 +25,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class FdaEnforcementComponent implements OnInit {
     reports$: Observable<FdaEnforcementResult[]> | undefined;
+    loading$: Observable<boolean> | undefined;
+    error$: Observable<any> | undefined;
 
-    constructor(private fdaService: FdaEnforcementService) { }
+    constructor(private store: Store) { }
 
     ngOnInit(): void {
-        this.reports$ = this.fdaService.getEnforcementReports().pipe(
-            map(response => response.results)
-        );
+        this.store.dispatch(loadReports());
+        this.reports$ = this.store.select(selectReports);
+        this.loading$ = this.store.select(selectLoading);
+        this.error$ = this.store.select(selectError);
     }
 }

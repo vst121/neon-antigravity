@@ -4,8 +4,19 @@
         <p>Latest food enforcement reports from the FDA API.</p>
     </div>
 
-    <div class="loading-shade" *ngIf="!(reports$ | async)">
+    <div class="loading-shade" *ngIf="loading$ | async">
         <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <div class="error-shade" *ngIf="error$ | async as error" style="color: red; text-align: center; padding: 2rem;">
+        <mat-icon>error</mat-icon>
+        <p>Error loading reports: {{ error.message || error }}</p>
+    </div>
+
+    <div class="empty-shade" *ngIf="!(loading$ | async) && !(error$ | async) && (reports$ | async)?.length === 0"
+        style="text-align: center; padding: 2rem; color: #888;">
+        <mat-icon>inbox</mat-icon>
+        <p>No reports found.</p>
     </div>
 
     <div class="reports-grid" *ngIf="reports$ | async as reports">
