@@ -20,6 +20,11 @@
     @if (authService.userName()) {
     <span class="user-name">Hi, {{ authService.userName() }}</span>
     }
+    <button mat-icon-button routerLink="/cart" aria-label="Cart">
+      <mat-icon [matBadge]="cartCount$ | async" [matBadgeHidden]="(cartCount$ | async) === 0" matBadgeColor="warn">
+        shopping_basket
+      </mat-icon>
+    </button>
     <button mat-button (click)="logout()">Logout</button>
     } @else {
     <button mat-button (click)="login()">Login</button>

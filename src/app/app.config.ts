@@ -12,6 +12,8 @@ import { isDevMode } from '@angular/core';
 import { fdaReducer } from './features/fda-enforcement/store/fda.reducer';
 import { FdaEffects } from './features/fda-enforcement/store/fda.effects';
 
+import { cartReducer } from './core/store/cart/cart.reducer';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
@@ -24,7 +26,7 @@ export const appConfig: ApplicationConfig = {
         sendAccessToken: true
       }
     }),
-    provideStore({ fda: fdaReducer }),
+    provideStore({ fda: fdaReducer, cart: cartReducer }),
     provideEffects([FdaEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]

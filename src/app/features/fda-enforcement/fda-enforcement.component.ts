@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { addToCart } from '../../core/store/cart/cart.actions';
 
 @Component({
     selector: 'app-fda-enforcement',
@@ -35,5 +36,9 @@ export class FdaEnforcementComponent implements OnInit {
         this.reports$ = this.store.select(selectReports);
         this.loading$ = this.store.select(selectLoading);
         this.error$ = this.store.select(selectError);
+    }
+
+    addToCart(item: FdaEnforcementResult) {
+        this.store.dispatch(addToCart({ item }));
     }
 }

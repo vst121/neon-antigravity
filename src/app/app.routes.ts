@@ -9,6 +9,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/fda-enforcement/fda-enforcement.component').then(m => m.FdaEnforcementComponent),
         canActivate: [authGuard]
     },
+    {
+        path: 'cart',
+        loadComponent: () => import('./features/cart/cart.component').then(m => m.CartComponent),
+        canActivate: [authGuard]
+    },
     { path: 'about', loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent) },
     { path: '**', redirectTo: '' }
 ];
