@@ -35,7 +35,10 @@
                 </div>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-button color="primary" (click)="addToCart(report)">Add to Cart</button>
+                <button mat-button color="primary" [disabled]="isInCart(report, cartItems$ | async)"
+                    (click)="addToCart(report)">
+                    {{ isInCart(report, cartItems$ | async) ? 'In Cart' : 'Add to Cart' }}
+                </button>
             </mat-card-actions>
         </mat-card>
     </div>
